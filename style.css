@@ -7,13 +7,16 @@ body {
   /* background-color: red; */
   display: flex;
   justify-content: center;
-
   /* background-color: gold; */
+  border-style: solid !important;
+  border: 5px;
+  border-color: black;
+  width: 50%;
 }
 
 img {
   width: auto;
-  height: 35vh;
+  height: 40vh;
 }
 
 .optionGrid {
@@ -45,6 +48,13 @@ img {
 }
 
 @media screen and (max-width: 480px) {
+  .numberDiv {
+    /* background-color: red; */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
   .optionGrid {
     /* background-color: beige; */
     display: grid;
@@ -69,6 +79,7 @@ img {
 
   img {
     width: 100%;
+    height: 30vh;
   }
 
   .button {
@@ -100,6 +111,7 @@ img {
   justify-content: center;
   flex-direction: column;
   row-gap: 2rem;
+  padding-top: 0.5rem;
 }
 
 #displayText {
@@ -130,7 +142,6 @@ img {
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: 0%;
   margin: 0%;
 }
 
@@ -140,6 +151,14 @@ img {
   height: 3rem;
   font-size: large;
 }
+
+.numberDiv {
+  /* background-color: red; */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
 /* .button {
   background-color: #fbeee0;
   border: 2px solid #422800;
