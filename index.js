@@ -43,7 +43,13 @@ const numberRenderer = function () {
 };
 
 const reloadFunction = function () {
-  location.reload();
+  doggoImage.src = "images/happyRet.png";
+  displayText.textContent = "PLEASE PRACTICE, I'M WATCHING!!!";
+  for (i = 0; i < 4; i++) {
+    optionArray[i].style.backgroundColor = "white";
+  }
+  numberGenerator();
+  numberRenderer();
 };
 
 numberGenerator();
@@ -124,6 +130,8 @@ const answer1 = function () {
   if (key == 0) {
     option1.style.backgroundColor = "green";
     confettiHappy();
+
+    doggoImage.src = "images/happyRet.png";
     displayText.textContent = "YAYYYYYYY!!!!!🥳🥳🥳🥳";
 
     setTimeout(reloadFunction, 2000);
@@ -141,6 +149,8 @@ const answer2 = function () {
   if (key == 1) {
     option2.style.backgroundColor = "green";
     confettiHappy();
+
+    doggoImage.src = "images/happyRet.png";
     displayText.textContent = "YAYYYYYYY!!!!!🥳🥳🥳🥳";
     setTimeout(reloadFunction, 2000);
   } else {
@@ -157,6 +167,7 @@ const answer3 = function () {
     option3.style.backgroundColor = "green";
     confettiHappy();
 
+    doggoImage.src = "images/happyRet.png";
     displayText.textContent = "YAYYYYYYY!!!!!🥳🥳🥳🥳";
     setTimeout(reloadFunction, 2000);
   } else {
@@ -173,6 +184,7 @@ const answer4 = function () {
   if (key == 3) {
     option4.style.backgroundColor = "green";
     confettiHappy();
+    doggoImage.src = "images/happyRet.png";
 
     displayText.textContent = "YAYYYYYYY!!!!!🥳🥳🥳🥳";
     setTimeout(reloadFunction, 2000);
