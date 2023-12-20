@@ -19,7 +19,6 @@ let c;
 const numberGenerator = function () {
   for (let i = 0; i < 4; i++) {
     const randomNumber = Math.floor(Math.random() * 100 + 1);
-    // console.log(randomNumber);
     arr.push(randomNumber);
   }
 };
@@ -47,6 +46,7 @@ const numberRenderer = function () {
 };
 
 const reloadFunction = function () {
+  arr = [];
   doggoImage.src = "images/happyRet.png";
   displayText.textContent = "PLEASE PRACTICE, I'M WATCHING!!!";
   for (i = 0; i < 4; i++) {
