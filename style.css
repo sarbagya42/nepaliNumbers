@@ -1,0 +1,92 @@
+body {
+  margin-top: 0%;
+  padding-top: 0%;
+  background-color: beige;
+}
+.number {
+  /* background-color: red; */
+  display: flex;
+  justify-content: center;
+  height: 40vh;
+}
+
+img {
+  width: auto;
+  height: auto;
+}
+
+.optionGrid {
+  /* background-color: beige; */
+  display: grid;
+  grid-template-columns: auto auto;
+  justify-content: center;
+  column-gap: 20rem;
+  row-gap: 8rem;
+  margin-top: 0%;
+}
+
+.button {
+  height: 4rem;
+  width: 10rem;
+  border-radius: 5rem;
+  cursor: pointer;
+  font-family: "Montserrat";
+  /* font-weight: bolder; */
+  font-size: xx-large;
+  box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+
+.button:hover {
+  box-shadow: 0 12px 16px 0 rgba(0, 0, 0, 0.24),
+    0 17px 50px 0 rgba(0, 0, 0, 0.19);
+}
+
+@media screen and (max-width: 480px) {
+  .optionGrid {
+    /* background-color: beige; */
+    display: grid;
+    grid-template-columns: auto auto;
+    justify-content: center;
+    column-gap: 3rem;
+    row-gap: 8rem;
+    padding-top: 2rem;
+  }
+  .number {
+    /* background-color: red; */
+    display: flex;
+    justify-content: center;
+    height: 40vh;
+  }
+  .doggo {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  img {
+    height: auto;
+    width: auto;
+  }
+}
+
+.retreiver {
+  height: 6rem;
+  width: 5rem;
+}
+
+.doggo {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  row-gap: 2rem;
+}
+
+#displayText {
+  font-family: "Courier New", Courier, monospace;
+}
+
+#doggoImage {
+  height: 10rem;
+  width: 7rem;
+}
