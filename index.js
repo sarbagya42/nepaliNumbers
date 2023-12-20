@@ -138,7 +138,6 @@ const answer1 = function () {
     correct.textContent = corrects;
     doggoImage.src = "images/happyRet.png";
     displayText.textContent = "YAYYYYYYY!!!!!🥳🥳🥳🥳";
-
     setTimeout(reloadFunction, 2000);
   } else {
     mistakes = mistakes + 1;
@@ -199,7 +198,6 @@ const answer4 = function () {
     correct.textContent = corrects;
     confettiHappy();
     doggoImage.src = "images/happyRet.png";
-
     displayText.textContent = "YAYYYYYYY!!!!!🥳🥳🥳🥳";
     setTimeout(reloadFunction, 2000);
   } else {
@@ -209,7 +207,6 @@ const answer4 = function () {
     optionArray[key].style.backgroundColor = "green";
     doggoImage.src = "images/sadRet.png";
     displayText.textContent = "CHECK THE ANSWER IN GREEN";
-    // confettiSad;
     setTimeout(reloadFunction, 3000);
   }
 };
