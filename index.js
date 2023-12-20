@@ -138,7 +138,6 @@ const answer1 = function () {
     correct.textContent = corrects;
     doggoImage.src = "images/happyRet.png";
     displayText.textContent = "YAYYYYYYY!!!!!🥳🥳🥳🥳";
-    setTimeout(reloadFunction, 2000);
   } else {
     mistakes = mistakes + 1;
     mistake.textContent = mistakes;
@@ -146,8 +145,6 @@ const answer1 = function () {
     optionArray[key].style.backgroundColor = "green";
     doggoImage.src = "images/sadRet.png";
     displayText.textContent = "CHECK THE ANSWER IN GREEN";
-    setTimeout(reloadFunction, 3000);
-    // confettiSad();
   }
 };
 
@@ -159,7 +156,6 @@ const answer2 = function () {
     correct.textContent = corrects;
     doggoImage.src = "images/happyRet.png";
     displayText.textContent = "YAYYYYYYY!!!!!🥳🥳🥳🥳";
-    setTimeout(reloadFunction, 2000);
   } else {
     option2.style.backgroundColor = "red";
     mistakes = mistakes + 1;
@@ -167,7 +163,6 @@ const answer2 = function () {
     optionArray[key].style.backgroundColor = "green";
     doggoImage.src = "images/sadRet.png";
     displayText.textContent = "CHECK THE ANSWER IN GREEN";
-    setTimeout(reloadFunction, 3000);
   }
 };
 
@@ -179,7 +174,6 @@ const answer3 = function () {
     confettiHappy();
     doggoImage.src = "images/happyRet.png";
     displayText.textContent = "YAYYYYYYY!!!!!🥳🥳🥳🥳";
-    setTimeout(reloadFunction, 2000);
   } else {
     option3.style.backgroundColor = "red";
     mistake.textContent = mistakes + 1;
@@ -187,7 +181,6 @@ const answer3 = function () {
     doggoImage.src = "images/sadRet.png";
     displayText.textContent = "CHECK THE ANSWER IN GREEN";
     // confettiSad();
-    setTimeout(reloadFunction, 3000);
   }
 };
 
@@ -199,7 +192,6 @@ const answer4 = function () {
     confettiHappy();
     doggoImage.src = "images/happyRet.png";
     displayText.textContent = "YAYYYYYYY!!!!!🥳🥳🥳🥳";
-    setTimeout(reloadFunction, 2000);
   } else {
     option4.style.backgroundColor = "red";
     mistakes = mistakes + 1;
@@ -207,6 +199,10 @@ const answer4 = function () {
     optionArray[key].style.backgroundColor = "green";
     doggoImage.src = "images/sadRet.png";
     displayText.textContent = "CHECK THE ANSWER IN GREEN";
-    setTimeout(reloadFunction, 3000);
   }
+};
+
+const nextButton = function () {
+  reloadFunction();
+  console.log("i am pressed");
 };
