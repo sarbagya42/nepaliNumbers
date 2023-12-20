@@ -6,12 +6,16 @@ const option4 = document.getElementById("option4");
 const displayText = document.getElementById("displayText");
 const optionArray = [option1, option2, option3, option4];
 const doggoImage = document.getElementById("doggoImage");
-
+const correct = document.getElementById("correct");
+const mistake = document.getElementById("mistake");
 let arr = [];
-let c = 0;
+let corrects = 0;
+let mistakes = 0;
+correct.textContent = corrects;
+mistake.textContent = mistakes;
 image.src = "/images/97.png";
 let key;
-
+let c;
 const numberGenerator = function () {
   for (let i = 0; i < 4; i++) {
     const randomNumber = Math.floor(Math.random() * 100 + 1);
@@ -46,7 +50,7 @@ const reloadFunction = function () {
   doggoImage.src = "images/happyRet.png";
   displayText.textContent = "PLEASE PRACTICE, I'M WATCHING!!!";
   for (i = 0; i < 4; i++) {
-    optionArray[i].style.backgroundColor = "white";
+    optionArray[i].style.backgroundColor = "gold";
   }
   numberGenerator();
   numberRenderer();
@@ -130,12 +134,15 @@ const answer1 = function () {
   if (key == 0) {
     option1.style.backgroundColor = "green";
     confettiHappy();
-
+    corrects = corrects + 1;
+    correct.textContent = corrects;
     doggoImage.src = "images/happyRet.png";
     displayText.textContent = "YAYYYYYYY!!!!!🥳🥳🥳🥳";
 
     setTimeout(reloadFunction, 2000);
   } else {
+    mistakes = mistakes + 1;
+    mistake.textContent = mistakes;
     option1.style.backgroundColor = "red";
     optionArray[key].style.backgroundColor = "green";
     doggoImage.src = "images/sadRet.png";
@@ -149,11 +156,15 @@ const answer2 = function () {
   if (key == 1) {
     option2.style.backgroundColor = "green";
     confettiHappy();
+    corrects = corrects + 1;
+    correct.textContent = corrects;
     doggoImage.src = "images/happyRet.png";
     displayText.textContent = "YAYYYYYYY!!!!!🥳🥳🥳🥳";
     setTimeout(reloadFunction, 2000);
   } else {
     option2.style.backgroundColor = "red";
+    mistakes = mistakes + 1;
+    mistake.textContent = mistakes;
     optionArray[key].style.backgroundColor = "green";
     doggoImage.src = "images/sadRet.png";
     displayText.textContent = "CHECK THE ANSWER IN GREEN";
@@ -164,12 +175,15 @@ const answer2 = function () {
 const answer3 = function () {
   if (key == 2) {
     option3.style.backgroundColor = "green";
+    corrects = corrects + 1;
+    correct.textContent = corrects;
     confettiHappy();
     doggoImage.src = "images/happyRet.png";
     displayText.textContent = "YAYYYYYYY!!!!!🥳🥳🥳🥳";
     setTimeout(reloadFunction, 2000);
   } else {
     option3.style.backgroundColor = "red";
+    mistake.textContent = mistakes + 1;
     optionArray[key].style.backgroundColor = "green";
     doggoImage.src = "images/sadRet.png";
     displayText.textContent = "CHECK THE ANSWER IN GREEN";
@@ -181,6 +195,8 @@ const answer3 = function () {
 const answer4 = function () {
   if (key == 3) {
     option4.style.backgroundColor = "green";
+    corrects = corrects + 1;
+    correct.textContent = corrects;
     confettiHappy();
     doggoImage.src = "images/happyRet.png";
 
@@ -188,6 +204,8 @@ const answer4 = function () {
     setTimeout(reloadFunction, 2000);
   } else {
     option4.style.backgroundColor = "red";
+    mistakes = mistakes + 1;
+    mistake.textContent = mistakes;
     optionArray[key].style.backgroundColor = "green";
     doggoImage.src = "images/sadRet.png";
     displayText.textContent = "CHECK THE ANSWER IN GREEN";
