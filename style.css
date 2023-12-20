@@ -28,6 +28,7 @@ img {
   row-gap: 3rem;
   margin-top: 0%;
   padding-bottom: 4rem;
+  grid-column-start: 2 !important;
 }
 
 .button {
@@ -148,7 +149,14 @@ img {
 #nextButton {
   background-color: white;
   text-decoration: double;
-  height: 3rem;
+  height: 2.5rem;
+  font-size: large;
+}
+
+#newGame {
+  background-color: white;
+  text-decoration: double;
+  height: 2.5rem;
   font-size: large;
 }
 

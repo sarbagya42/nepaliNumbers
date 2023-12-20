@@ -206,3 +206,7 @@ const nextButton = function () {
   reloadFunction();
   console.log("i am pressed");
 };
+
+const newGame = function () {
+  location.reload();
+};
