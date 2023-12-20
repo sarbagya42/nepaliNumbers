@@ -149,7 +149,6 @@ const answer2 = function () {
   if (key == 1) {
     option2.style.backgroundColor = "green";
     confettiHappy();
-
     doggoImage.src = "images/happyRet.png";
     displayText.textContent = "YAYYYYYYY!!!!!🥳🥳🥳🥳";
     setTimeout(reloadFunction, 2000);
@@ -166,7 +165,6 @@ const answer3 = function () {
   if (key == 2) {
     option3.style.backgroundColor = "green";
     confettiHappy();
-
     doggoImage.src = "images/happyRet.png";
     displayText.textContent = "YAYYYYYYY!!!!!🥳🥳🥳🥳";
     setTimeout(reloadFunction, 2000);

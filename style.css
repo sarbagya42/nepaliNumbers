@@ -47,8 +47,8 @@ img {
     display: grid;
     grid-template-columns: auto auto;
     justify-content: center;
-    column-gap: 3rem;
-    row-gap: 8rem;
+    column-gap: 1rem;
+    row-gap: 3rem;
     padding-top: 2rem;
   }
   .number {
@@ -56,6 +56,7 @@ img {
     display: flex;
     justify-content: center;
     height: 40vh;
+    width: 100%;
   }
   .doggo {
     display: flex;
@@ -64,8 +65,7 @@ img {
   }
 
   img {
-    height: auto;
-    width: auto;
+    width: 100%;
   }
 }
 
