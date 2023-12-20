@@ -7,7 +7,7 @@ body {
   /* background-color: red; */
   display: flex;
   justify-content: center;
-  height: 30vh;
+
   /* background-color: gold; */
 }
 
@@ -75,6 +75,11 @@ img {
     width: 9rem;
     height: 3rem;
   }
+
+  #displayText {
+    font-family: "Courier New", Courier, monospace;
+    font-size: 1rem;
+  }
 }
 
 .retreiver {
@@ -92,7 +97,6 @@ img {
 
 #displayText {
   font-family: "Courier New", Courier, monospace;
-  font-size: large;
 }
 
 #doggoImage {
