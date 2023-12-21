@@ -1,10 +1,5 @@
 const nepaliNumber = document.getElementById("nepaliNumber");
-const option1 = document.getElementById("option1");
-const option2 = document.getElementById("option2");
-const option3 = document.getElementById("option3");
-const option4 = document.getElementById("option4");
 const displayText = document.getElementById("displayText");
-const optionArray = [option1, option2, option3, option4];
 const doggoImage = document.getElementById("doggoImage");
 const correct = document.getElementById("correct");
 const mistake = document.getElementById("mistake");
@@ -12,21 +7,24 @@ const modal = document.getElementById("myModal");
 const scoreSheet = document.getElementById("scoreSheet");
 const nextButtonn = document.getElementById("nextButton");
 const span = document.getElementsByClassName("close")[0];
-let arr = [];
+const submitButton = document.getElementById("submitButton");
+const inputField = document.getElementById("inputField");
+const correctAnswer = document.getElementById("correctAnswer");
+// let arr = [];
 let corrects = 0;
 let mistakes = 0;
-let tries = 20;
+let tries = 2;
 let min;
 let max;
-let randomNum;
+let randomNumber;
 let random;
-let lastDigit;
-let optionsAll = [];
-let uniqueAll = [];
+// let lastDigit;
+// let optionsAll = [];
+// let uniqueAll = [];
 correct.textContent = corrects;
 mistake.textContent = mistakes;
-let key;
-let c;
+// let key;
+// let c;
 const nepaliNumbersArray = [
   { key: 0, number: "शुन्य" },
   { key: 1, number: "एक" },
@@ -131,76 +129,26 @@ const nepaliNumbersArray = [
   { key: 100, number: "सय" },
 ];
 
-const nextButton = function () {
-  reloadFunction();
-};
-
-const numberGenerator = function () {
-  for (let i = 0; i < 4; i++) {
-    const randomNumber = Math.floor(Math.random() * (100 - 30 + 1) + 30);
-    arr.push(randomNumber);
-  }
-};
-
-const keyGenerator = () => {
-  return Math.floor(Math.random() * 4);
-};
-
-const disableNextButton = function () {
-  nextButtonn.disabled = true;
-};
-
-const enableNextButton = function () {
-  nextButtonn.disabled = false;
+const randomNumberGenerator = function () {
+  randomNumber = Math.floor(Math.random() * (100 - 30 + 1) + 30);
 };
 
 const numberRenderer = function () {
-  disableNextButton();
-  key = keyGenerator();
-  const answer = arr[key];
-  min = answer - 20;
-  max = answer + 20;
-  nepaliNumber.textContent = nepaliNumbersArray[answer].number;
-  optionArray[key].textContent = arr[key];
-  for (let i = 0; i < 4; i++) {
-    randomNum = Math.floor(Math.random() * (max - min + 1)) + min;
-    lastDigit = answer % 10;
-    random = Math.floor(randomNum / 10) * 10 + lastDigit;
-    optionsAll.push(random);
-  }
-  optionsAll[key] = answer;
-  uniqueAll = [...new Set(optionsAll)];
-  for (i = uniqueAll.length; i < 4; i++) {
-    uniqueAll[i] = uniqueAll[i - 1] + 1;
-  }
-
-  for (j = 0; j < 4; j++) {
-    if (key != j) {
-      if (uniqueAll[j] == answer) {
-        optionArray[j].textContent = answer + 5;
-      } else {
-        optionArray[j].textContent = uniqueAll[j];
-      }
-    }
-  }
+  nepaliNumber.textContent = nepaliNumbersArray[randomNumber].number;
 };
 
+randomNumberGenerator();
+numberRenderer();
+
 const reloadFunction = function () {
-  disableNextButton();
   tries = tries - 1;
   if (tries == 1) {
     nextButtonn.textContent = "Score";
-    arr = [];
-    uniqueAll = [];
-    optionsAll = [];
-    enableButtons();
-    doggoImage.src = "images/happyRet.png";
-    displayText.textContent = "PRACTICE!!";
-    for (i = 0; i < 4; i++) {
-      optionArray[i].style.backgroundColor = "gold";
-    }
-    numberGenerator();
+    correctAnswer.textContent = "";
+    randomNumberGenerator();
     numberRenderer();
+    inputField.value = "";
+    disableNextButton();
   } else if (tries == 0) {
     scoreSheet.textContent = `YOUR SCORE IS ${corrects}/20 AND YOU MADE ${mistakes} MISTAKES.`;
     modal.style.display = "block";
@@ -217,20 +165,113 @@ const reloadFunction = function () {
       }
     };
   } else {
-    arr = [];
-    enableButtons();
-    doggoImage.src = "images/happyRet.png";
-    displayText.textContent = "PLEASE PRACTICE, I'M WATCHING!!!";
-    for (i = 0; i < 4; i++) {
-      optionArray[i].style.backgroundColor = "gold";
-    }
-    numberGenerator();
+    correctAnswer.textContent = "";
+    randomNumberGenerator();
     numberRenderer();
+    inputField.value = "";
+    disableNextButton();
   }
 };
 
-numberGenerator();
-numberRenderer();
+const nextButton = function () {
+  reloadFunction();
+};
+
+// const numberGenerator = function () {
+//   for (let i = 0; i < 4; i++) {
+//     randomNumber = Math.floor(Math.random() * (100 - 30 + 1) + 30);
+//   }
+// };
+
+// const keyGenerator = () => {
+//   return Math.floor(Math.random() * 4);
+// };
+
+const submit = function () {
+  if (inputField.value == randomNumber) {
+    confettiHappy();
+    doggoImage.src = "images/happyRet.png";
+    corrects = corrects + 1;
+    correct.textContent = corrects;
+    correctAnswer.textContent = `${randomNumber} IS CORRECT!!!!`;
+  } else {
+    doggoImage.src = "images/sadRet.png";
+    mistakes = mistakes + 1;
+    mistake.textContent = mistakes;
+    correctAnswer.textContent = `WRONG!!!!! ${randomNumber} IS THE CORRECT ANSWER`;
+  }
+  enableNextButton();
+};
+
+const disableNextButton = function () {
+  nextButtonn.disabled = true;
+};
+
+const enableNextButton = function () {
+  nextButtonn.disabled = false;
+};
+
+// const numberRenderer = function () {
+//   key = keyGenerator();
+//   const answer = arr[key];
+//   min = answer - 20;
+//   max = answer + 20;
+//   nepaliNumber.textContent = nepaliNumbersArray[answer].number;
+//   optionArray[key].textContent = arr[key];
+//   for (let i = 0; i < 4; i++) {
+//     randomNum = Math.floor(Math.random() * (max - min + 1)) + min;
+//     lastDigit = answer % 10;
+//     random = Math.floor(randomNum / 10) * 10 + lastDigit;
+//     optionsAll.push(random);
+//   }
+// };
+
+// const reloadFunction = function () {
+//   disableNextButton();
+//   tries = tries - 1;
+//   if (tries == 1) {
+//     nextButtonn.textContent = "Score";
+//     arr = [];
+//     uniqueAll = [];
+//     optionsAll = [];
+//     enableButtons();
+//     doggoImage.src = "images/happyRet.png";
+//     displayText.textContent = "PRACTICE!!";
+//     for (i = 0; i < 4; i++) {
+//       optionArray[i].style.backgroundColor = "gold";
+//     }
+//     numberGenerator();
+//     numberRenderer();
+//   } else if (tries == 0) {
+//     scoreSheet.textContent = `YOUR SCORE IS ${corrects}/20 AND YOU MADE ${mistakes} MISTAKES.`;
+//     modal.style.display = "block";
+//     span.onclick = function () {
+//       modal.style.display = "none";
+//       location.reload();
+//     };
+
+//     // When the user clicks anywhere outside of the modal, close it
+//     window.onclick = function (event) {
+//       if (event.target == modal) {
+//         modal.style.display = "none";
+//         location.reload();
+//       }
+//     };
+//   } else {
+//     arr = [];
+//     enableButtons();
+//     doggoImage.src = "images/happyRet.png";
+//     displayText.textContent = "PLEASE PRACTICE, I'M WATCHING!!!";
+//     for (i = 0; i < 4; i++) {
+//       optionArray[i].style.backgroundColor = "gold";
+//     }
+//     numberGenerator();
+//     numberRenderer();
+//   }
+// };
+
+// numberGenerator();
+// numberRenderer();
 
 const confettiHappy = function () {
   const defaults = {
@@ -317,89 +358,11 @@ const enableButtons = function () {
   option4.disabled = false;
 };
 
-const answer1 = function () {
-  enableNextButton();
-  disableButtons();
-  if (key == 0) {
-    option1.style.backgroundColor = "green";
-    confettiHappy();
-    corrects = corrects + 1;
-    correct.textContent = corrects;
-    doggoImage.src = "images/happyRet.png";
-    displayText.textContent = "YAYYYYYYY!!!!!🥳🥳🥳🥳";
-  } else {
-    mistakes = mistakes + 1;
-    mistake.textContent = mistakes;
-    option1.style.backgroundColor = "red";
-    optionArray[key].style.backgroundColor = "green";
-    doggoImage.src = "images/sadRet.png";
-    displayText.textContent = "CHECK THE ANSWER IN GREEN";
-  }
-};
-
-const answer2 = function () {
-  enableNextButton();
-  disableButtons();
-  if (key == 1) {
-    option2.style.backgroundColor = "green";
-    confettiHappy();
-    corrects = corrects + 1;
-    correct.textContent = corrects;
-    doggoImage.src = "images/happyRet.png";
-    displayText.textContent = "YAYYYYYYY!!!!!🥳🥳🥳🥳";
-  } else {
-    option2.style.backgroundColor = "red";
-    mistakes = mistakes + 1;
-    mistake.textContent = mistakes;
-    optionArray[key].style.backgroundColor = "green";
-    doggoImage.src = "images/sadRet.png";
-    displayText.textContent = "CHECK THE ANSWER IN GREEN";
-  }
-};
-
-const answer3 = function () {
-  enableNextButton();
-  disableButtons();
-  if (key == 2) {
-    option3.style.backgroundColor = "green";
-    corrects = corrects + 1;
-    correct.textContent = corrects;
-    confettiHappy();
-    doggoImage.src = "images/happyRet.png";
-    displayText.textContent = "YAYYYYYYY!!!!!🥳🥳🥳🥳";
-  } else {
-    option3.style.backgroundColor = "red";
-    mistake.textContent = mistakes + 1;
-    optionArray[key].style.backgroundColor = "green";
-    doggoImage.src = "images/sadRet.png";
-    displayText.textContent = "CHECK THE ANSWER IN GREEN";
-    // confettiSad();
-  }
-};
-
-const answer4 = function () {
-  enableNextButton();
-  disableButtons();
-  if (key == 3) {
-    option4.style.backgroundColor = "green";
-    corrects = corrects + 1;
-    correct.textContent = corrects;
-    confettiHappy();
-    doggoImage.src = "images/happyRet.png";
-    displayText.textContent = "YAYYYYYYY!!!!!🥳🥳🥳🥳";
-  } else {
-    option4.style.backgroundColor = "red";
-    mistakes = mistakes + 1;
-    mistake.textContent = mistakes;
-    optionArray[key].style.backgroundColor = "green";
-    doggoImage.src = "images/sadRet.png";
-    displayText.textContent = "CHECK THE ANSWER IN GREEN";
-  }
-};
 const newGame = function () {
   location.reload();
 };
 
+disableNextButton();
 // const nepaliNumbers = Array.from({ length: 101 }, (_, i) => ({
 //   key: i,
 //   number: String.fromCharCode(0x906 + i), // Unicode values for Nepali numbers start from 0x906
