@@ -8,9 +8,21 @@ const optionArray = [option1, option2, option3, option4];
 const doggoImage = document.getElementById("doggoImage");
 const correct = document.getElementById("correct");
 const mistake = document.getElementById("mistake");
+const modal = document.getElementById("myModal");
+const scoreSheet = document.getElementById("scoreSheet");
+const nextButtonn = document.getElementById("nextButton");
+const span = document.getElementsByClassName("close")[0];
 let arr = [];
 let corrects = 0;
 let mistakes = 0;
+let tries = 20;
+let min;
+let max;
+let randomNum;
+let random;
+let lastDigit;
+let optionsAll = [];
+let uniqueAll = [];
 correct.textContent = corrects;
 mistake.textContent = mistakes;
 let key;
@@ -119,9 +131,13 @@ const nepaliNumbersArray = [
   { key: 100, number: "सय" },
 ];
 
+const nextButton = function () {
+  reloadFunction();
+};
+
 const numberGenerator = function () {
   for (let i = 0; i < 4; i++) {
-    const randomNumber = Math.floor(Math.random() * 100 + 1);
+    const randomNumber = Math.floor(Math.random() * (100 - 30 + 1) + 30);
     arr.push(randomNumber);
   }
 };
@@ -130,32 +146,87 @@ const keyGenerator = () => {
   return Math.floor(Math.random() * 4);
 };
 
+const disableNextButton = function () {
+  nextButtonn.disabled = true;
+};
+
+const enableNextButton = function () {
+  nextButtonn.disabled = false;
+};
+
 const numberRenderer = function () {
+  disableNextButton();
   key = keyGenerator();
   const answer = arr[key];
+  min = answer - 20;
+  max = answer + 20;
   nepaliNumber.textContent = nepaliNumbersArray[answer].number;
   optionArray[key].textContent = arr[key];
   for (let i = 0; i < 4; i++) {
-    const random = Math.floor(Math.random() * 100 + 1);
-    if (key != i) {
-      if (answer == random) {
-        optionArray[i].textContent = random + 9;
+    randomNum = Math.floor(Math.random() * (max - min + 1)) + min;
+    lastDigit = answer % 10;
+    random = Math.floor(randomNum / 10) * 10 + lastDigit;
+    optionsAll.push(random);
+  }
+  optionsAll[key] = answer;
+  uniqueAll = [...new Set(optionsAll)];
+  for (i = uniqueAll.length; i < 4; i++) {
+    uniqueAll[i] = uniqueAll[i - 1] + 1;
+  }
+
+  for (j = 0; j < 4; j++) {
+    if (key != j) {
+      if (uniqueAll[j] == answer) {
+        optionArray[j].textContent = answer + 5;
       } else {
-        optionArray[i].textContent = random;
+        optionArray[j].textContent = uniqueAll[j];
       }
     }
   }
 };
 
 const reloadFunction = function () {
-  arr = [];
-  doggoImage.src = "images/happyRet.png";
-  displayText.textContent = "PLEASE PRACTICE, I'M WATCHING!!!";
-  for (i = 0; i < 4; i++) {
-    optionArray[i].style.backgroundColor = "gold";
+  disableNextButton();
+  tries = tries - 1;
+  if (tries == 1) {
+    nextButtonn.textContent = "Score";
+    arr = [];
+    uniqueAll = [];
+    optionsAll = [];
+    enableButtons();
+    doggoImage.src = "images/happyRet.png";
+    displayText.textContent = "PLEASE PRACTICE, I'M WATCHING!!!";
+    for (i = 0; i < 4; i++) {
+      optionArray[i].style.backgroundColor = "gold";
+    }
+    numberGenerator();
+    numberRenderer();
+  } else if (tries == 0) {
+    scoreSheet.textContent = `YOUR SCORE IS ${corrects}/20 AND YOU MADE ${mistakes} MISTAKES.`;
+    modal.style.display = "block";
+    span.onclick = function () {
+      modal.style.display = "none";
+      location.reload();
+    };
+
+    // When the user clicks anywhere outside of the modal, close it
+    window.onclick = function (event) {
+      if (event.target == modal) {
+        modal.style.display = "none";
+        location.reload();
+      }
+    };
+  } else {
+    arr = [];
+    enableButtons();
+    doggoImage.src = "images/happyRet.png";
+    displayText.textContent = "PLEASE PRACTICE, I'M WATCHING!!!";
+    for (i = 0; i < 4; i++) {
+      optionArray[i].style.backgroundColor = "gold";
+    }
+    numberGenerator();
+    numberRenderer();
   }
-  numberGenerator();
-  numberRenderer();
 };
 
 numberGenerator();
@@ -232,7 +303,23 @@ const confettiSad = function () {
   setTimeout(shoot, 200);
 };
 
+const disableButtons = function () {
+  option1.disabled = true;
+  option2.disabled = true;
+  option3.disabled = true;
+  option4.disabled = true;
+};
+
+const enableButtons = function () {
+  option1.disabled = false;
+  option2.disabled = false;
+  option3.disabled = false;
+  option4.disabled = false;
+};
+
 const answer1 = function () {
+  enableNextButton();
+  disableButtons();
   if (key == 0) {
     option1.style.backgroundColor = "green";
     confettiHappy();
@@ -251,6 +338,8 @@ const answer1 = function () {
 };
 
 const answer2 = function () {
+  enableNextButton();
+  disableButtons();
   if (key == 1) {
     option2.style.backgroundColor = "green";
     confettiHappy();
@@ -269,6 +358,8 @@ const answer2 = function () {
 };
 
 const answer3 = function () {
+  enableNextButton();
+  disableButtons();
   if (key == 2) {
     option3.style.backgroundColor = "green";
     corrects = corrects + 1;
@@ -287,6 +378,8 @@ const answer3 = function () {
 };
 
 const answer4 = function () {
+  enableNextButton();
+  disableButtons();
   if (key == 3) {
     option4.style.backgroundColor = "green";
     corrects = corrects + 1;
@@ -303,11 +396,6 @@ const answer4 = function () {
     displayText.textContent = "CHECK THE ANSWER IN GREEN";
   }
 };
-
-const nextButton = function () {
-  reloadFunction();
-};
-
 const newGame = function () {
   location.reload();
 };
