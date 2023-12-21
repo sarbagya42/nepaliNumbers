@@ -195,7 +195,7 @@ const reloadFunction = function () {
     optionsAll = [];
     enableButtons();
     doggoImage.src = "images/happyRet.png";
-    displayText.textContent = "PLEASE PRACTICE, I'M WATCHING!!!";
+    displayText.textContent = "PRACTICE!!";
     for (i = 0; i < 4; i++) {
       optionArray[i].style.backgroundColor = "gold";
     }
