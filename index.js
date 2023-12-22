@@ -13,7 +13,7 @@ const correctAnswer = document.getElementById("correctAnswer");
 // let arr = [];
 let corrects = 0;
 let mistakes = 0;
-let tries = 2;
+let tries = 20;
 let min;
 let max;
 let randomNumber;
