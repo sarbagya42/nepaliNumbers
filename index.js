@@ -14,6 +14,7 @@ const correctAnswer = document.getElementById("correctAnswer");
 let corrects = 0;
 let mistakes = 0;
 let tries = 20;
+let storeTries = tries;
 let min;
 let max;
 let randomNumber;
@@ -150,7 +151,9 @@ const reloadFunction = function () {
     inputField.value = "";
     disableNextButton();
   } else if (tries == 0) {
-    scoreSheet.textContent = `YOUR SCORE IS ${corrects}/20 AND YOU MADE ${mistakes} MISTAKES.`;
+    scoreSheet.textContent = `YOUR SCORE IS ${corrects}/${storeTries} AND YOU MADE ${
+      storeTries - corrects
+    } MISTAKES.`;
     modal.style.display = "block";
     span.onclick = function () {
       modal.style.display = "none";
@@ -174,6 +177,7 @@ const reloadFunction = function () {
 };
 
 const nextButton = function () {
+  enableSubmitButton();
   reloadFunction();
 };
 
@@ -188,29 +192,60 @@ const nextButton = function () {
 // };
 
 const submit = function () {
-  if (inputField.value == randomNumber) {
+  if (inputField.value === "") {
+    alert("TYPE THE NUMBER BEFORE SUBMITTING!");
+    reloadFunction();
+    mistakes = mistakes + 1;
+    mistake.textContent = mistakes;
+    doggoImage.src = "images/sadRet.png";
+  } else if (inputField.value == randomNumber) {
     confettiHappy();
     doggoImage.src = "images/happyRet.png";
     corrects = corrects + 1;
     correct.textContent = corrects;
     correctAnswer.textContent = `${randomNumber} IS CORRECT!!!!`;
+    disableSubmitButton();
   } else {
     doggoImage.src = "images/sadRet.png";
     mistakes = mistakes + 1;
     mistake.textContent = mistakes;
     correctAnswer.textContent = `WRONG!!!!! ${randomNumber} IS THE CORRECT ANSWER`;
+    disableSubmitButton();
   }
   enableNextButton();
 };
+
+submitButton.addEventListener("click", submit);
+
+// document.addEventListener("DOMContentLoaded", function () {
+//   var textField = document.getElementById("inputField");
+
+//   textField.addEventListener("keydown", function (event) {
+//     handleKeyPress(event);
+//   });
+
+//   function handleKeyPress(event) {
+//     if (event.key === "Enter") {
+//       submit();
+//     }
+//   }
+// });
 
 const disableNextButton = function () {
   nextButtonn.disabled = true;
 };
 
+const disableSubmitButton = function () {
+  submitButton.disabled = true;
+};
+
+const enableSubmitButton = function () {
+  submitButton.disabled = false;
+};
+
 const enableNextButton = function () {
   nextButtonn.disabled = false;
 };
-
 // const numberRenderer = function () {
 //   key = keyGenerator();
 //   const answer = arr[key];
