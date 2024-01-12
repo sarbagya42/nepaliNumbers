@@ -203,12 +203,14 @@ const submit = function () {
     doggoImage.src = "images/happyRet.png";
     corrects = corrects + 1;
     correct.textContent = corrects;
+    correctAnswer.style.color = "green";
     correctAnswer.textContent = `${randomNumber} IS CORRECT!!!!`;
     disableSubmitButton();
   } else {
     doggoImage.src = "images/sadRet.png";
     mistakes = mistakes + 1;
     mistake.textContent = mistakes;
+    correctAnswer.style.color = "red";
     correctAnswer.textContent = `WRONG!!!!! ${randomNumber} IS THE CORRECT ANSWER`;
     disableSubmitButton();
   }

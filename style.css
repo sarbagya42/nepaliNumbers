@@ -141,8 +141,8 @@ img {
 }
 
 .retreiver {
-  height: 6rem;
-  width: 5rem;
+  height: 5rem;
+  width: 4rem;
 }
 
 .doggo {
@@ -288,12 +288,15 @@ img {
 
 #correctAnswerDiv {
   padding-top: 1rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 #correctAnswer {
   color: green;
   font-family: "Montserrat";
-  font-size: 1.5rem;
+  font-size: 1rem;
 }
 
 .buttons {
